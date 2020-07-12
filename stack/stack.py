@@ -13,13 +13,18 @@ return elements in Last In First Out order.
 class Stack:
     def __init__(self):
         self.size = 0
-        # self.storage = ?
+        self.storage = []
 
     def __len__(self):
-        pass
+        return int(self.size)
 
     def push(self, value):
-        pass
+        self.value = value
+        self.storage.append(self.value)
+        self.size += 1
 
     def pop(self):
-        pass
+        if len(self.storage) > 0:
+            self.size -= 1
+            return self.storage.pop()
+        
