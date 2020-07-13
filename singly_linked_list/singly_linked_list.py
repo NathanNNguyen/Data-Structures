@@ -38,12 +38,58 @@ class LinkedList:
         else:
             self.tail.set_next(new_node)
             self.tail = new_node
-    
-    # def contains(self, value):
-    #     head_val = self.head.get_value()
-    #     tail_val = self.tail.get_value()
-    #     if self.tail:
-    #         return tail_val
-    #     else:
-    #         return 
+
+    def contains(self, value):
+        # first let's check if the list is not empty
+        if self.head == None:
+            return 
         
+        # get the first Node of the list
+        current = self.head
+        # start the loop
+        while current:
+            # if the Node has the same value with the input
+            # return True
+            if current.get_value() == value:
+                return True
+            # update the current node to the next node in list
+            # to keep looping through the list
+            current = current.get_next()
+        # return False if value isn't in the list
+        return
+
+    def remove_head(self):
+        # if we have an empty LL
+        if self.head is None and self.tail is None:
+            return
+        # if there is a single element in the LL
+        if not self.head.get_next():
+            head = self.head
+            # delete the linked list's head ref
+            self.head = None
+            # delete the linked list's tail ref
+            self.tail = None
+            return head.get_value()
+        val = self.head.get_value()
+        # update the current node to the next node in list
+        # to keep looping through the list
+        self.head = self.head.get_next()
+        return val
+
+    def get_max(self):
+        if self.head == None:
+            return None
+        # create a variable for max value
+        max_value = self.head.get_value()
+        # get the head node for looping
+        current = self.head
+        # check the list
+        while current:
+            # check if the current value is greater than max value
+            if current.get_value() > max_value:
+                # update if current is greater than max
+                max_value = current.get_value()
+            # update the current node to the next node in list
+            # to keep looping through the list
+            current = current.get_next()
+        return max_value

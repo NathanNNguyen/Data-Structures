@@ -28,9 +28,9 @@ class Queue:
         return len(self.storage)
 
     def dequeue(self):
-        if self.size > 0:
+        if len(self.storage) > 0:
             self.size -= 1
-            self.storage.pop()
+            return self.storage.pop()
 
     def __str__(self):
         return f"{self.storage}"
