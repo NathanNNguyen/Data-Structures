@@ -25,6 +25,17 @@ class LinkedList:
         self.head = None
         self.tail = None
 
+    # return all values in the list a -> b -> c -> None
+    def __str__(self):
+        output = ''
+        current_node = self.head # create a tracker variable
+        while current_node is not None: # loop until its NONE
+            output += f"{current_node.value} -> "
+
+            # update the tracker node to the next node
+            current_node = current_node.next_node 
+        return output
+
     def add_to_head(self, value):
         new_node = Node(value)
         if self.head is None and self.tail is None:
@@ -104,11 +115,12 @@ class LinkedList:
         # otherwise
         current = self.head
         while current:
-            if current.next == self.tail:
-                tail_value = current.next.value
+            if current.next_node == self.tail:
+                tail_value = current.next_node.value
                 self.tail = current
-                self.tail.next = None
+                self.tail.next_node = None
                 return tail_value
+            current = current.next_node
 
     def get_max(self):
         # if list is empty, do nothing
@@ -130,3 +142,12 @@ class LinkedList:
             # to keep looping through the list
             current = current.next_node
         return max_value
+
+
+ll = LinkedList()
+ll.add_to_head(0)
+ll.add_to_tail(1)
+
+ll.remove_tail()
+
+print(ll)
