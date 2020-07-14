@@ -7,17 +7,6 @@ class Node:
         # a pointer that point to the next node
         self.next_node = next_node
 
-    # def get_value(self):
-    #     return self.value
-    
-    # def get_next(self):
-    #     return self.next
-
-    # def set_next(self, new_next):
-    #     # for addding a new node, this would help the 
-    #     # pointer pointing to the new Node input
-    #     self.next = new_next
-
 class LinkedList:
     def __init__(self):
         # init of empty LL should have both head 

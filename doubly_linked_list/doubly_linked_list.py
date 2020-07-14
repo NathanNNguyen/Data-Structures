@@ -20,6 +20,18 @@ class DoublyLinkedList:
 
     def __len__(self):
         return self.length
+
+    def __str__(self):
+        output = ''
+        current_node = self.head # create a tracker variable
+
+        while current_node: # loop until its NONE
+            output += f"{current_node.value} -> "
+
+            # update the tracker node to the next node
+            current_node = current_node.next
+        return output
+
     
     """
     Wraps the given value in a ListNode and inserts it 
@@ -27,7 +39,20 @@ class DoublyLinkedList:
     the old head node's previous pointer accordingly.
     """
     def add_to_head(self, value):
-        pass
+        # make a node
+        new_node = ListNode(value)
+        # check if list is empty
+        if self.head is None and self.tail is None:
+            self.head = new_node
+            self.tail = new_node
+
+        # otherwise
+        else:
+            new_node.next = self.head
+            self.head.prev = new_node
+            self.head = new_node
+            self.length += 1
+        # pass
         
     """
     Removes the List's current head node, making the
@@ -35,7 +60,25 @@ class DoublyLinkedList:
     Returns the value of the removed Node.
     """
     def remove_from_head(self):
-        pass
+        # check if list is empty
+        if not self.head:
+            return None
+        
+        # if there is only 1 item in the list
+        if self.head.next is None:
+            head_value = self.head.value
+            self.head == None
+            self.tail == None
+            self.length == 0
+            return head_value
+
+        # otherwise
+        head_value = self.head.value
+        self.head = self.head.next
+        self.head.prev = None
+        self.length -= 1
+        return head_value
+        # pass
             
     """
     Wraps the given value in a ListNode and inserts it 
@@ -80,3 +123,12 @@ class DoublyLinkedList:
     """
     def get_max(self):
         pass
+
+
+dl = DoublyLinkedList()
+dl.add_to_head(2)
+dl.add_to_head(3)
+dl.add_to_head(5)
+dl.remove_from_head()
+dl.remove_from_head()
+print(dl)
