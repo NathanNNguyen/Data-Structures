@@ -1,6 +1,6 @@
 class Node:
     def __init__(self, value=None, next_node=None):
-        
+
         # init of every Node should have a value
         self.value = value
 
@@ -76,6 +76,7 @@ class LinkedList:
         
         # if list only has one element, set head and tail to None
         if self.head.next_node is None:
+            # we need to get the head_value so we could return it
             head_value = self.head.value
             self.head = None
             self.tail = None
@@ -85,6 +86,29 @@ class LinkedList:
         head_value = self.head.value
         self.head = self.head.next_node
         return head_value
+    
+    # remove the head and return its value
+    def remove_tail(self):
+        # if list is empty, do nothing
+        if not self.tail:
+            return None
+        
+        # if list has one element, set both head and tail to None
+        if self.head == self.tail:
+            # we need to get the tail_value so we could return it
+            tail_value = self.tail.value
+            self.head = None
+            self.tail = None
+            return tail_value
+        
+        # otherwise
+        current = self.head
+        while current:
+            if current.next == self.tail:
+                tail_value = current.next.value
+                self.tail = current
+                self.tail.next = None
+                return tail_value
 
     def get_max(self):
         # if list is empty, do nothing
