@@ -123,18 +123,32 @@ class DoublyLinkedList:
         return tail_value
             
     """
-    Removes the input node from its current spot in the 
-    List and inserts it as the new head node of the List.
+    Delete the node, save it value, then add a new node
+    to the front of the list. If your delete function,
+    add function are working fine then no need to write
+    extra code
     """
     def move_to_front(self, node):
-        pass
+        # check if node already the head
+        if node == self.head:
+            return None
+
+        old_value = node.value
+        self.delete(node)
+        self.add_to_head(old_value)
         
     """
     Removes the input node from its current spot in the 
     List and inserts it as the new tail node of the List.
     """
     def move_to_end(self, node):
-        pass
+        # check if node already the tail
+        if node == self.tail:
+            return None
+
+        old_value = node.value
+        self.delete(node)
+        self.add_to_tail(old_value)
 
     """
     Deletes the input node from the List, preserving the 
@@ -183,13 +197,22 @@ class DoublyLinkedList:
     in the List.
     """
     def get_max(self):
-        pass
+        if not self.head:
+            return None
 
+        current = self.head
+        max_value = current.value
 
-dl = DoublyLinkedList()
-dl.add_to_head(2)
-dl.add_to_head(3)
-dl.add_to_head(5)
-dl.remove_from_head()
-dl.remove_from_head()
-print(dl)
+        while current:
+            if current.value > max_value:
+                max_value = current.value
+            current = current.next
+        return max_value
+
+# dl = DoublyLinkedList()
+# dl.add_to_head(2)
+# dl.add_to_head(3)
+# dl.add_to_head(5)
+# dl.remove_from_head()
+# dl.remove_from_head()
+# print(dl)
